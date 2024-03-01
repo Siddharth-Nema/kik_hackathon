@@ -76,18 +76,103 @@
 }
 
 .HomePage {
+}
+/* .HomePage {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  height: 100vh; */
+
+body {
+  font-family: "Josefin Sans", sans-serif;
+}
+
+.HomePage {
+  margin: 0;
+  font-family: sans-serif;
+  background-size: cover;
+  background-position: center;
   height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0);
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.HomePage h1 {
+  font-size: 7em;
+  padding: 0px;
+  margin-top: 175px;
+  margin-bottom: 0px;
+}
+
+.HomePage p {
+  font-size: 2em;
+  margin-bottom: 25px;
 }
 
 .HomePage button {
+  background-color: #4caf50;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+  cursor: pointer;
+  border-radius: 8px;
+  margin-bottom: 230px;
+}
+
+.HomePage button:hover {
+  background-color: rgb(0, 0, 0);
+  transition: 0.2s;
+  color: #4caf50;
+  transform: scale(1.1);
+}
+
+@keyframes addTextAnimation {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+.HomePage h1::after {
+  content: "|";
+  animation: blinkCursor 0.8s infinite alternate;
+}
+
+.HomePage h1 {
+  overflow: hidden;
+  white-space: nowrap;
+  animation: addTextAnimation 3s steps(40, end) forwards;
+}
+
+@keyframes blinkCursor {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/******************/
+
+/* .HomePage button {
   padding: 10px;
   border: 1px solid;
   border-radius: 10px;
-}
+} */
 
 .Dashboard {
   display: flex;
