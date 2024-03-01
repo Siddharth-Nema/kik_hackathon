@@ -53,6 +53,31 @@ model Session {
     user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
+enum Department {
+    CSE
+    EEE
+    BBA
+    ARCH
+    LAW
+    ENG
+    PHARM
+    MATH
+    PHYS
+    CHEM
+    BIO
+    STAT
+    ECON
+    SOC
+    POL
+    PSY
+    HIS
+    PHI
+    BAN
+    
+    FREN
+    SPAN
+}
+
 model User {
     id            String    @id @default(cuid())
     name          String?
@@ -62,7 +87,15 @@ model User {
     accounts      Account[]
     sessions      Session[]
     posts         Post[]
+    cgpa          Float?
+    rollno       String?
+    department    String?    
+    interests     String[]
+    careerGoals   String[]
+    careerOrientation String?
+
 }
+
 
 model VerificationToken {
     identifier String
