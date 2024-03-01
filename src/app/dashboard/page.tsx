@@ -6,38 +6,80 @@ import RecommendationTile from "./recommendation_tile";
 import PreferenceTile from "./preference_tile";
 import { Slider } from "~/components/ui/slider";
 import { cn } from "~/lib/utils";
+import { getRecommendations } from "../actions";
 // import { cn } from "@/lib/utils"
 // import { Slider } from "@/components/ui/slider"
+
+interface DataEntry {
+  A: number;
+  B: number;
+  C: number;
+  D: number;
+  EX: number;
+  F: number;
+  P: number;
+  session: string;
+}
+
+interface PrevData {
+  avg: number;
+  data: DataEntry[];
+}
+
+interface Course {
+  "L-T-P": string;
+  cid: string;
+  name: string;
+  percent: number;
+  prevData: PrevData;
+}
 
 export default function UserPage() {
   const [checked, setChecked] = useState(false);
   const [pref, setPref] = useState(50);
+  const [recommendations, setRecommendations] = useState([
+    {
+      "L-T-P": "3-1-0",
+      cid: "MA60002",
+      name: "DATA STRUCTURE AND ALGORITHM",
+      percent: 30,
+      prevData: {
+        avg: 8.608022969647251,
+        data: [
+          {
+            /* Data entries */
+          },
+        ],
+      },
+    },
+    // Add more Course objects as needed
+  ]);
 
   const [goals, setGoals] = useState(
     new Map<string, boolean>([
       ["Management", false],
       ["Research & Development", false],
+      ["Sales", false],
       ["Supply Chain Management", false],
       ["Product Management", false],
-      ["Sales", false],
       ["Data Science", false],
+      ["Entrepreneur", false],
       ["Product Management", false],
       ["Consulting", false],
       ["Teaching", false],
       ["Government Services", false],
+      ["Financial Analyst", false],
       ["Software Development", false],
       ["Web Development", false],
-      ["Financial Analyst", false],
       ["Quantitative Analyst", false],
-      ["Entrepreneur", false],
       ["Electronics Engineer", false],
       ["Communication Engineer", false],
+      ["Game Developer", false],
       ["Embedded Systems Engineer", false],
       ["Mechanical Engineer", false],
       ["Automotive Engineer", false],
       ["Aerospace Engineer", false],
       ["Civil Engineer", false],
-      ["Game Developer", false],
       ["Biomedical Engineer", false],
       ["Biotechnologist", false],
       ["Pharmaceutical Engineer", false],
@@ -60,6 +102,20 @@ export default function UserPage() {
       ["key7", false],
     ]),
   );
+
+  function getGoals() {
+    const data: string[] = [];
+
+    Array.from(goals.keys()).forEach((value) => {
+      if (goals.get(value)) {
+        console.log(goals.get(value));
+        data.push(value);
+      }
+    });
+
+    console.log(data);
+    return data;
+  }
 
   const handleToggle = () => {
     setChecked(!checked);
@@ -124,15 +180,14 @@ export default function UserPage() {
                   <div className="Goal-Selector">
                     {Array.from(goals.keys()).map((title, index) => {
                       return (
-                        <div key={index} className="Preference-Row">
-                          <PreferenceTile
-                            title={title}
-                            onClick={() => {
-                              goals.set(title, !goals.get(title));
-                            }}
-                            status={goals.get(title) ?? false}
-                          />
-                        </div>
+                        <PreferenceTile
+                          key={index}
+                          title={title}
+                          onClick={() => {
+                            goals.set(title, !goals.get(title));
+                          }}
+                          status={goals.get(title) ?? false}
+                        />
                       );
                     })}
                   </div>
@@ -162,55 +217,26 @@ export default function UserPage() {
 
             <div className="Recommendations">
               <h5>List of recommendations</h5>
-              <div className="Recommendation-List">
-                <RecommendationTile
-                  title="Programming and Data Structures"
-                  subjectCode="CS10001"
-                />
-              </div>
-              <div className="Recommendation-List">
-                <RecommendationTile
-                  title="Programming and Data Structures"
-                  subjectCode="CS10001"
-                />
-              </div>
-              <div className="Recommendation-List">
-                <RecommendationTile
-                  title="Programming and Data Structures"
-                  subjectCode="CS10001"
-                />
-              </div>
-              <div className="Recommendation-List">
-                <RecommendationTile
-                  title="Programming and Data Structures"
-                  subjectCode="CS10001"
-                />
-              </div>
-              <div className="Recommendation-List">
-                <RecommendationTile
-                  title="Programming and Data Structures"
-                  subjectCode="CS10001"
-                />
-              </div>
-              <div className="Recommendation-List">
-                <RecommendationTile
-                  title="Programming and Data Structures"
-                  subjectCode="CS10001"
-                />
-              </div>
-              <div className="Recommendation-List">
-                <RecommendationTile
-                  title="Programming and Data Structures"
-                  subjectCode="CS10001"
-                />
-              </div>
-              <div className="Recommendation-List">
-                <RecommendationTile
-                  title="Programming and Data Structures"
-                  subjectCode="CS10001"
-                />
-              </div>
+              {recommendations.map((course, index) => {
+                return (
+                  <div key={index} className="Recommendation-List">
+                    <RecommendationTile
+                      title={course.name}
+                      subjectCode={course.percent.toString()}
+                    />
+                  </div>
+                );
+              })}
             </div>
+          </div>
+          <div className="ApplyChangesButton">
+            <button
+              onClick={async () => {
+                setRecommendations(await getRecommendations(getGoals()));
+              }}
+            >
+              Apply Changes
+            </button>
           </div>
         </div>
       </div>

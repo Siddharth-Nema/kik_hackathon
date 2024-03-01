@@ -321,6 +321,7 @@ body {
   margin: 1px;
   border: 1px solid;
   border-radius: 5px;
+  max-width: max-content;
 }
 
 .Graph {
@@ -328,7 +329,10 @@ body {
 }
 
 .Goal-Selector {
-  display: grid;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
 }
 
 /********************************************/
@@ -384,7 +388,7 @@ input[type="checkbox"]:checked + .slider:before {
 }
 
 .clicked {
-  transition: 0.5s;
+  transition: 0.25s;
   background-color: beige;
 }
 /*********************************************/
