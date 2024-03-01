@@ -4,9 +4,14 @@ import { useState } from "react";
 import QuickInfoTile from "./quick_info";
 import RecommendationTile from "./recommendation_tile";
 import PreferenceTile from "./preference_tile";
+import { Slider } from "~/components/ui/slider";
+import { cn } from "~/lib/utils";
+// import { cn } from "@/lib/utils"
+// import { Slider } from "@/components/ui/slider"
 
 export default function UserPage() {
   const [checked, setChecked] = useState(false);
+  const [pref, setPref] = useState(50);
 
   const [goals, setGoals] = useState(
     new Map<string, boolean>([
@@ -35,22 +40,46 @@ export default function UserPage() {
     setChecked(!checked);
   };
 
+  function getDate() {
+    const date = new Date();
+    const dateAsString =
+      date.getDay() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();
+    return dateAsString;
+  }
+
   return (
     <div className="Dashboard">
       <div className="TopNavBar">
+        <img
+          src="https://cdn-icons-png.flaticon.com/512/3033/3033143.png"
+          alt="Profile"
+        />
         <h2>Shourya Godha</h2>
       </div>
 
       <div className="Content">
         <div className="Content-Title">
           <h1>Dashboard</h1>
-          <h4>March 1, 2024</h4>
+          <h4>{getDate()}</h4>
         </div>
         <div className="Quick-Info">
-          <QuickInfoTile title="CGPA" value="8.98" />
-          <QuickInfoTile title="CGPA" value="8.98" />
-          <QuickInfoTile title="CGPA" value="8.98" />
-          <QuickInfoTile title="CGPA" value="8.98" />
+          <QuickInfoTile title="Department" value="Computer Science" />
+          <QuickInfoTile title="CGPA" value="11.98" />
+          <QuickInfoTile title="Orientation" value="Job" />
+          <div className="Slider">
+            <div className="Slider-Tags">
+              <h4>CGPA</h4>
+              <h4>Skills</h4>
+            </div>
+            <Slider
+              value={[pref]}
+              max={100}
+              onValueChange={(e) => {
+                setPref(e[0] ?? 50);
+              }}
+              step={2}
+            />
+          </div>
         </div>
         <div className="Main-Content">
           <div className="toggle-slider">
