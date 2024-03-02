@@ -157,7 +157,7 @@ export default function UserPage() {
   }
 
   return (
-    <div className="Dashboard">
+    <div className="Dashboard h-screen">
       <div className=" border-zinc flex items-center  gap-2 border px-24 py-2">
         <img
           src="https://cdn-icons-png.flaticon.com/512/3033/3033143.png"
