@@ -1,17 +1,9 @@
 "use client";
 
-import { redirect } from "next/navigation";
 import { useState } from "react";
 import { navigateToDashboard } from "../actions";
 
-interface FormData {
-  rollNumber: string;
-  department: string;
-  preference: string;
-  name: string;
-}
-
-export default function OnBoardingPage() {
+export default function SignUp() {
   const departments: string[] = [
     "Aeronautical Engineering",
     "Computer Science and Engineering",
@@ -138,10 +130,16 @@ export default function OnBoardingPage() {
     "Earth and Environmental Science",
   ];
 
+  interface FormData {
+    rollNumber: string;
+    department: string;
+    cgpa: string;
+    name: string;
+  }
   const [formData, setFormData] = useState<FormData>({
     rollNumber: "",
     department: "",
-    preference: "",
+    cgpa: "",
     name: "",
   });
 
@@ -156,79 +154,75 @@ export default function OnBoardingPage() {
     e.preventDefault();
     // Handle form submission here, e.g., send data to server
     console.log(formData);
+
+    localStorage.setItem("name", formData.name);
+    localStorage.setItem("department", formData.department);
+    localStorage.setItem("cgpa", formData.cgpa);
+    localStorage.setItem("rollNumber", formData.rollNumber);
+
     await navigateToDashboard();
   };
 
   return (
-    <div className="OnBoardingPage">
-      <form onSubmit={handleSubmit}>
-        <label>
-          Roll Number:
-          <input
-            type="text"
-            name="rollNumber"
-            value={formData.rollNumber}
-            onChange={handleInputChange}
+    <div className="SignUp">
+      <div className="twoboxes">
+        <div className="divimg">
+          <img
+            src="https://botup.com/images/blog/chatbot-app-2.png?v=1685597433119865848"
+            alt="Image"
+            className="image"
           />
-        </label>
-        <br />
-        <label>
-          Department:
-          <select
-            name="department"
-            value={formData.department}
-            onChange={handleInputChange}
-          >
-            <option value="">Select Department</option>
-            <option value="Computer Science">Computer Science</option>
-            <option value="Electrical Engineering">
-              Electrical Engineering
-            </option>
-            <option value="Mechanical Engineering">
-              Mechanical Engineering
-            </option>
-            {departments.map((value, index) => {
-              return (
-                <option key={index} value="Computer Science">
-                  Computer Science
-                </option>
-              );
-            })}
-          </select>
-        </label>
-        <br />
-        <label>
-          Preference:
-          <input
-            type="radio"
-            name="preference"
-            value="Skill"
-            checked={formData.preference === "Skill"}
-            onChange={handleInputChange}
-          />{" "}
-          Skill
-          <input
-            type="radio"
-            name="preference"
-            value="CGPA"
-            checked={formData.preference === "CGPA"}
-            onChange={handleInputChange}
-          />{" "}
-          CGPA
-        </label>
-        <br />
-        <label>
-          Name:
-          <input
-            type="text"
-            name="name"
-            value={formData.name}
-            onChange={handleInputChange}
-          />
-        </label>
-        <br />
-        <button type="submit">Submit</button>
-      </form>
+        </div>
+        <div className="rightcont">
+          <h2>Sign Up</h2>
+          <form onSubmit={handleSubmit}>
+            <label>Name:</label>
+            <input
+              type="text"
+              name="name"
+              value={formData.name}
+              onChange={handleInputChange}
+              required
+            ></input>
+
+            <label>Roll No.:</label>
+            <input
+              type="text"
+              name="rollNumber"
+              value={formData.rollNumber}
+              onChange={handleInputChange}
+              required
+            ></input>
+
+            <label>Department:</label>
+            <select
+              name="department"
+              value={formData.department}
+              onChange={handleInputChange}
+            >
+              <option value="">Select Department</option>
+              {departments.map((value, index) => {
+                return (
+                  <option key={index} value={value}>
+                    {value}
+                  </option>
+                );
+              })}
+            </select>
+
+            <label>CGPA:</label>
+            <input
+              type="text"
+              id="cpga"
+              name="cgpa"
+              onChange={handleInputChange}
+              required
+            ></input>
+
+            <button type="submit">Submit</button>
+          </form>
+        </div>
+      </div>
     </div>
   );
 }

@@ -6,7 +6,7 @@ import RecommendationTile from "./recommendation_tile";
 import PreferenceTile from "./preference_tile";
 import { Slider } from "~/components/ui/slider";
 import { cn } from "~/lib/utils";
-import { getRecommendations } from "../actions";
+import { getRecommendations } from "../api";
 import { BarChart } from "../chart/page";
 import { getCourseDetails } from "~/actions/user_actions";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "~/components/ui/tabs";
