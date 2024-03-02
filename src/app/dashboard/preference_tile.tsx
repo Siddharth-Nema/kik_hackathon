@@ -13,7 +13,7 @@ export default function PreferenceTile({
 
   return (
     <div
-      className={`my-1 rounded-full border bg-gray-200   px-4 py-1 font-semibold ${state ? "clicked" : ""}`}
+      className={`my-1 rounded-full border bg-gray-200 px-4 py-1 text-sm ${state ? "clicked" : ""}`}
       onClick={() => {
         setState(!state);
         onClick();

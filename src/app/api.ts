@@ -22,7 +22,7 @@ interface Course {
   prevData: PrevData;
 }
 
-export async function getRecommendations(data: string[]) {
+export async function getRecommendations(data: string[], pref: number) {
   const response = await fetch("http://127.0.0.1:5000/", {
     method: "POST",
     headers: {
@@ -35,7 +35,12 @@ export async function getRecommendations(data: string[]) {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const recommendations: Course[] = await response.json();
 
-  recommendations.sort((a, b) => b.percent - a.percent);
+  recommendations.sort(
+    (a, b) =>
+      pref * b.percent +
+      (100 - pref) * b.prevData.avg * 10 -
+      (pref * a.percent + (100 - pref) * a.prevData.avg * 10),
+  );
 
   console.log(recommendations);
 

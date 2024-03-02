@@ -15,10 +15,9 @@ export default function HomePage() {
     >
       <h1>ElectiveGenie</h1>
       <p>Smart Elective Choices, Powered by AI.</p>
-      <a href="/dashboard">
-        <button>Dashboard</button>
-      </a>
-      <button onClick={() => signIn("google")}>Get Started</button>
+      <button>
+        <a href="/signup">Get Started</a>
+      </button>
     </div>
   );
 }

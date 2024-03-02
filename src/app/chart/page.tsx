@@ -12,6 +12,7 @@ import {
 } from "chart.js";
 import { DataEntry } from "../dashboard/page";
 
+// eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -83,7 +84,7 @@ export const BarChart = ({
         data: [data.EX, data.A, data.B, data.C, data.D, data.P, data.F],
         borderColor: "rgb(53, 162, 235)",
         backgroundColor:
-          bgColors[index]?.toString() || "rgba(255, 99, 132, 0.4)",
+          bgColors[index]?.toString() ?? "rgba(255, 99, 132, 0.4)",
       };
     }),
   };
@@ -91,7 +92,7 @@ export const BarChart = ({
   const chartOptions: {
     plugins: {
       legend: {
-        position: string;
+        position: unknown;
       };
       title: {
         display: boolean;
