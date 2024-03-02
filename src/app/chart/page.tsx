@@ -10,7 +10,7 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
-
+import { DataEntry } from "../dashboard/page";
 
 ChartJS.register(
   CategoryScale,
@@ -48,55 +48,102 @@ ChartJS.register(
 //   datas : Data[]
 // }
 
-interface Data {
-  A: number;
-  B: number;
-  C: number;
-  D: number;
-  EX: number;
-  F: number;
-  P: number;
-  session: string;
-}
-
-export const BarChart = ({ datas }: { datas: Data[] }) => {
-  const [chartData, setChartData] = useState({
-    labels: [] as any,
-    datasets: [] as any,
-  });
-
-  const [chartOptions, setChartOptions] = useState({});
-
-  useEffect(() => {
-    setChartData({
-      labels: ["EX", "A", "B", "C", "D", "P", "F"],
-      datasets: datas.map((data) => {
-        return {
-          label: data.session,
-          data: [data.EX, data.A, data.B, data.C, data.D, data.P, data.F],
-          borderColor: "rgb(53, 162, 235)",
-          backgroundColor: "rgb(53, 162, 235, 0.4)",
-        };
-      }),
-    });
-    setChartOptions({
-      plugins: {
-        legend: {
-          position: "top",
-        },
-        title: {
-          display: true,
-          text: "Daily Revenue",
-        },
+export const BarChart = ({
+  datas,
+  courseName,
+}: {
+  datas: DataEntry[];
+  courseName: string;
+}) => {
+  // const [chartData, setChartData] = useState({
+  //   labels: [] as any,
+  //   datasets: [] as any,
+  // });
+  const bgColors = [
+    "rgba(255, 99, 132, 0.4)",
+    "rgba(54, 162, 235, 0.4)",
+    "rgba(255, 206, 86, 0.4)",
+    "rgba(75, 192, 192, 0.4)",
+    "rgba(153, 102, 255, 0.4)",
+    "rgba(255, 159, 64, 0.4)",
+  ];
+  const chartData: {
+    labels: string[];
+    datasets: {
+      label: string;
+      data: number[];
+      borderColor: string;
+      backgroundColor: string;
+    }[];
+  } = {
+    labels: ["EX", "A", "B", "C", "D", "P", "F"],
+    datasets: datas.map((data, index) => {
+      return {
+        label: data.session,
+        data: [data.EX, data.A, data.B, data.C, data.D, data.P, data.F],
+        borderColor: "rgb(53, 162, 235)",
+        backgroundColor:
+          bgColors[index]?.toString() || "rgba(255, 99, 132, 0.4)",
+      };
+    }),
+  };
+  // const [chartOptions, setChartOptions] = useState({});
+  const chartOptions: {
+    plugins: {
+      legend: {
+        position: string;
+      };
+      title: {
+        display: boolean;
+        text: string;
+      };
+    };
+    maintainAspectRatio: boolean;
+    responsive: boolean;
+  } = {
+    plugins: {
+      legend: {
+        position: "top",
       },
-      maintainAspectRatio: false,
-      responsive: true,
-    });
-  }, []);
+      title: {
+        display: true,
+        text: courseName,
+      },
+    },
+    maintainAspectRatio: false,
+    responsive: true,
+  };
+
+  // useEffect(() => {
+  // setChartData({
+  //   labels: ["EX", "A", "B", "C", "D", "P", "F"],
+  //   datasets: datas.map((data, index) => {
+  //     return {
+  //       label: data.session,
+  //       data: [data.EX, data.A, data.B, data.C, data.D, data.P, data.F],
+  //       borderColor: "rgb(53, 162, 235)",
+  //       backgroundColor: bgColors[index],
+  //     };
+  //   }),
+  // });
+  //   setChartOptions({
+  //     plugins: {
+  //       legend: {
+  //         position: "top",
+  //       },
+  //       title: {
+  //         display: true,
+  //         text: courseName,
+  //       },
+  //     },
+  //     maintainAspectRatio: false,
+  //     responsive: true,
+  //   });
+  // }, []);
 
   return (
     <>
-      <div className="relative m-auto h-[50vh] w-full rounded-lg border bg-white p-4 md:col-span-2 lg:h-[70vh]">
+      <div className="relative m-auto h-[100%]  w-full rounded-lg border bg-white p-4  ">
         <Bar data={chartData} options={chartOptions} />
       </div>
     </>
@@ -126,9 +173,5 @@ const datas = [
   },
 ];
 export default function BarChartPage() {
-  return (
-    <div>
-      <BarChart datas={datas} />
-    </div>
-  );
+  return <div>{/* <BarChart datas={datas}  /> */}</div>;
 }
