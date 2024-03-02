@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { navigateToDashboard } from "../actions";
 
 export default function SignUp() {
@@ -162,6 +162,16 @@ export default function SignUp() {
 
     await navigateToDashboard();
   };
+
+  const navigate = async () => {
+    if (localStorage.getItem("name")) {
+      await navigateToDashboard();
+    }
+  };
+
+  useEffect(() => {
+    navigate();
+  }, []);
 
   return (
     <div className="SignUp">
