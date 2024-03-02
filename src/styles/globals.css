@@ -84,7 +84,108 @@ body {
     to { opacity: 0; }
   }
 
+
 /******************/
+
+
+.SignUp{
+  height: 90vh;
+  margin: 0px;
+  padding: 0px;
+  font-family: sans-serif;
+  background-image: url(https://i.pinimg.com/736x/93/7a/2d/937a2db9cf570fc96c206d9fd4d20e65.jpg);
+  background-position: center;
+  background-size: cover;
+  z-index: -1;
+}
+
+.twoboxes {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  box-shadow: 0 0 100px rgba(0, 0, 0, 0.9);
+  height: 80vh;
+  margin: 10vh 20vh;  
+  z-index: 0;
+}
+
+.divimg {
+  width: 50%;
+  height: 100%;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+}
+
+.rightcont {
+  width: 50%;
+  background-color: #fff;
+  padding: 6vh;
+
+}
+
+.rightcont h2 {
+  margin-top: 6vh;
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 5vh;
+}
+
+.rightcont label {
+  margin-bottom: 5px;
+  font-size: 1.2em;
+}
+
+.rightcont input,
+.rightcont select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+}
+
+.rightcont select {
+  appearance: none;
+}
+
+.rightcont button {
+  background-color: #4CAF50;
+  font-size: 1.2em;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  display: block;
+  margin: 0 auto;
+  margin-top: 2vh;
+}
+
+.rightcont button:hover {
+  background-color: #2980b9;
+}
+
+@media (max-width: 768px) {
+  .container {
+      flex-direction: column;
+      margin: 10vh 5vw;
+  }
+
+  .divimg,
+  .rightcont {
+      width: 100%;
+  }
+
+  .divimg {
+      height: 40vh;
+  }
+}
+
+/* ///////////////// */
 
 /* .HomePage button {
   padding: 10px;
