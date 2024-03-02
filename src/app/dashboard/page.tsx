@@ -58,9 +58,9 @@ export default function UserPage() {
       "L-T-P": "0-0-0",
       cid: "Elective Genie",
       name: "Select a preference",
-      percent: 0,
+      percent: 30,
       prevData: {
-        avg: 0,
+        avg: 8.608022969647251,
         data: [],
       },
     },
@@ -168,7 +168,8 @@ export default function UserPage() {
           width={40}
         />
         <h2 className=" text-lg font-bold">
-          {localStorage.getItem("name") ?? "User"}
+          {window.localStorage.getItem("name") ?? "User"}
+          {/* {localStorage.getItem("name") ?? "User"} */}
         </h2>
       </div>
 

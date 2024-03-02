@@ -170,7 +170,7 @@ export default function SignUp() {
   };
 
   useEffect(() => {
-    navigate();
+    void navigate();
   }, []);
 
   return (
