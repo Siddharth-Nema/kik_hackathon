@@ -9,6 +9,7 @@ import {
   Title,
   Tooltip,
   Legend,
+  ElementChartOptions,
 } from "chart.js";
 import { DataEntry } from "../dashboard/page";
 
@@ -89,6 +90,7 @@ export const BarChart = ({
     }),
   };
   // const [chartOptions, setChartOptions] = useState({});
+  
   const chartOptions: {
     plugins: {
       legend: {

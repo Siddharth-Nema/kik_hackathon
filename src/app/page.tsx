@@ -13,7 +13,10 @@ export default function HomePage() {
         backgroundImage: `url(${bg.src})`,
       }}
     >
-      <h1>ElectiveGenie</h1>
+      <div className="typedHeading">
+        <h1>ElectiveGenie</h1>
+      </div>
+
       <p>Smart Elective Choices, Powered by AI.</p>
       <button>
         <a href="/signup">Get Started</a>

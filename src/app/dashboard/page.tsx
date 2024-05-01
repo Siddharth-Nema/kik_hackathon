@@ -161,7 +161,7 @@ export default function UserPage() {
 
   return (
     <div className="Dashboard">
-      <div className=" border-zinc flex items-center  gap-2 border px-24 py-2">
+      <div className=" border-zinc topnavbar flex  items-center gap-2 border px-24 py-2">
         <img
           src="https://cdn-icons-png.flaticon.com/512/3033/3033143.png"
           alt="Profile"
@@ -186,7 +186,7 @@ export default function UserPage() {
             </button>
           </div>
         </div>
-        <div className="flex justify-between">
+        <div className="quickinfotiles flex justify-between">
           <QuickInfoTile
             title="Department"
             value={localStorage.getItem("department") ?? ""}
@@ -199,7 +199,7 @@ export default function UserPage() {
             title="Orientation"
             value={pref > 50 ? "Jobs" : "CGPA"}
           />
-          <div className="border-zin flex min-w-96  flex-col justify-center rounded-lg border p-4 shadow-md">
+          <div className="border-zin quickinfotile flex  min-w-96 flex-col justify-center rounded-lg border p-4 shadow-md">
             <div className="Slider-Tags">
               <h4 className="text-lg font-semibold text-gray-600">CGPA</h4>
               <h4 className="text-lg font-semibold text-gray-600">Skills</h4>
@@ -214,8 +214,8 @@ export default function UserPage() {
             />
           </div>
         </div>
-        <div className="mt-12">
-          <div className="flex w-full  justify-between gap-24  ">
+        <div className=" mt-12">
+          <div className=" MainContent flex w-full  justify-between gap-24  ">
             <Tabs
               defaultValue={currentTab}
               className="w-full rounded-xl border p-4 text-lg shadow-lg"
@@ -226,7 +226,7 @@ export default function UserPage() {
                 <TabsTrigger value="details">DETAILS</TabsTrigger>
               </TabsList>
               <TabsContent value="account">
-                <div className="h-[420px]">
+                <div>
                   <div className="h-[520px] overflow-y-auto">
                     <h1 className="text-lg font-bold">Goals</h1>
                     <div className="flex flex-wrap gap-2">
@@ -254,7 +254,7 @@ export default function UserPage() {
               </TabsContent>
             </Tabs>
 
-            <div className="relative h-[600px] w-full overflow-y-auto rounded-xl border p-4 shadow-lg">
+            <div className=" recommendations relative w-full overflow-y-auto rounded-xl border p-4 shadow-lg">
               <div className="sticky -top-4 bg-white py-4 text-xl font-bold">
                 <span>List of Recommendations</span>
                 <div className="flex justify-between text-lg text-gray-800">
